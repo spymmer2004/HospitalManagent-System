@@ -1,9 +1,4 @@
 -- Add foreign key constraint to link Recptionist table to Appointment table
-ALTER TABLE
-    Appointment
-ADD
-    CONSTRAINT fk_appointment_receptionist FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID);
-
 -- Add foreign key constraint to link Patient table to ElectronicPrescription table
 ALTER TABLE
     ElectronicPrescription

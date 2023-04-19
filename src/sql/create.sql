@@ -10,7 +10,7 @@ create table Recptionist(
 
 -- Create a table to store patient information
 create table Patient(
-    patientID varchar(30),
+    patientID int,
     -- Unique ID for each patient
     patientName varchar(30),
     -- Patient name
@@ -33,7 +33,7 @@ create table Doctor(
 
 -- Create a table to store appointment information
 create table Appointment(
-    appointmentID varchar(30),
+    appointmentID int,
     -- Unique ID for each appointment
     Appointmentdate Datetime,
     -- Date and time of appointment
@@ -65,17 +65,14 @@ create table HealthRecords(
     ID int,
     -- ID of the prescription associated with this medication
     constraint pk_healthrecords PRIMARY KEY (ID) -- Set medicationID
-)
+);
 
 create table HospitalStaff(
-    ID varchar(30),
-    -- Unique ID for each doctor
+    ID int,
     staffName varchar(30),
-    -- Name of the doctor
     department varchar(30),
-    -- Speciality of the doctor
-    int salary,
-    int performance,
+    salary int,
+    performance int,
     constraint pk_hospitalstaff PRIMARY KEY (ID) -- Set doctorID as the primary key
 );
 
@@ -85,6 +82,6 @@ create table Billing(
     totalAmount int,
     amountPaid int,
     dueDate Date,
-    status varchar(30),
+    currStatus varchar(30),
     constraint pk_billing PRIMARY KEY (billID) -- Set doctorID as the primary key
 );

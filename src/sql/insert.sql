@@ -1,41 +1,46 @@
--- Insert data into the Recptionist table
+-- Insert receptionist data
 INSERT INTO
-    Recptionist(recptionistID, receptionistName, Salary)
+    Receptionist (receptionistID, receptionistName, salary)
 VALUES
     ('R001', 'John Doe', 40000),
     ('R002', 'Jane Smith', 45000),
-    ('R003', 'Mike Johnson', 50000);
+    ('R003', 'Mark Johnson', 50000);
 
--- Insert data into the Patient table
+-- Insert patient data
 INSERT INTO
-    Patient(patientID, patientName, age, gender)
+    Patient (patientID, patientName, age, gender)
 VALUES
-    ('P001', 'Alice Brown', '30', 'Female'),
-    ('P002', 'Bob Smith', '45', 'Male'),
-    ('P003', 'Charlie Davis', '25', 'Male');
+    ('P001', 'Alice Green', 25, 'Female'),
+    ('P002', 'Bob Brown', 40, 'Male'),
+    ('P003', 'Charlie Davis', 55, 'Male');
 
--- Insert data into the Doctor table
+-- Insert doctor data
 INSERT INTO
-    Doctor(doctorID, doctorName, department)
+    Doctor (doctorID, doctorName, department)
 VALUES
-    ('D001', 'Dr. John Smith', 'Cardiology'),
-    ('D002', 'Dr. Sarah Johnson', 'Oncology'),
-    ('D003', 'Dr. Mark Davis', 'Orthopedics');
+    ('D001', 'Dr. Emily Lee', 'Cardiology'),
+    ('D002', 'Dr. Michael Brown', 'Oncology'),
+    ('D003', 'Dr. Sarah Johnson', 'Neurology');
 
--- Insert data into the Appointment table
+-- Insert appointment data
 INSERT INTO
-    Appointment(appointmentID, Appointmentdate, doctorID)
-VALUES
-    ('A001', '2023-04-22 10:00:00', 'D001'),
-    ('A002', '2023-04-23 11:00:00', 'D002'),
-    ('A003', '2023-04-24 13:00:00', 'D003');
-
--- Insert data into the ElectronicPrescription table
-INSERT INTO
-    ElectronicPrescription(
-        prescriptionID,
-        patientID,
+    Appointment (
+        appointmentID,
+        appointmentDate,
         doctorID,
+        patientID
+    )
+VALUES
+    ('A001', '2023-05-01 10:00:00', 'D001', 'P001'),
+    ('A002', '2023-05-02 11:00:00', 'D002', 'P002'),
+    ('A003', '2023-05-03 12:00:00', 'D003', 'P003');
+
+-- Insert electronic prescription data
+INSERT INTO
+    ElectronicPrescription (
+        prescriptionID,
+        doctorID,
+        patientID,
         medicationName,
         dosage,
         frequency
@@ -43,98 +48,110 @@ INSERT INTO
 VALUES
     (
         'EP001',
-        'P001',
         'D001',
-        'Aspirin',
-        '100mg',
-        'once daily'
+        'P001',
+        'Lisinopril',
+        '10 mg',
+        'Once a day'
     ),
     (
         'EP002',
-        'P002',
         'D002',
-        'Ibuprofen',
-        '200mg',
-        'twice daily'
+        'P002',
+        'Chemotherapy',
+        '100 mg',
+        'Once a week'
     ),
     (
         'EP003',
-        'P003',
         'D003',
-        'Acetaminophen',
-        '500mg',
-        'three times daily'
+        'P003',
+        'Zoloft',
+        '50 mg',
+        'Twice a day'
     );
 
--- Insert data into the HealthRecords table
+-- Insert health record data
 INSERT INTO
-    HealthRecords(summary, isCured, currentStatus, ID)
+    HealthRecord (
+        recordID,
+        prescriptionID,
+        summary,
+        isCured,
+        currentStatus
+    )
 VALUES
     (
-        'Patient has a mild headache',
-        'No',
-        'In progress',
-        'HR001'
+        'H001',
+        'EP001',
+        'High blood pressure',
+        1,
+        'Closed'
     ),
-    (
-        'Patient is suffering from fever',
-        'No',
-        'In progress',
-        'HR002'
-    ),
-    (
-        'Patient has a broken arm',
-        'Yes',
-        'Cured',
-        'HR003'
-    );
+    ('H002', 'EP002', 'Lung cancer', 0, 'In progress'),
+    ('H003', 'EP003', 'Depression', 1, 'Closed');
 
--- Insert data into the HospitalStaff table
+-- Insert billing data
 INSERT INTO
-    HospitalStaff(ID, staffName, department, salary, performance)
-VALUES
-    ('HS001', 'Emily Johnson', 'Nursing', 55000, 4),
-    (
-        'HS002',
-        'David Brown',
-        'Administrative',
-        70000,
-        5
-    ),
-    ('HS003', 'Linda Davis', 'Finance', 60000, 3);
-
--- Insert data into the Billing table
-INSERT INTO
-    Billing(
+    Billing (
         billID,
         patientID,
         totalAmount,
         amountPaid,
         dueDate,
-        currStatus
+        currentStatus
     )
 VALUES
-    (
-        'B001',
-        'P001',
-        2000,
-        1000,
-        '2023-05-01',
-        'Pending'
-    ),
+    ('B001', 'P001', 5000, 2500, '2023-05-10', 'Open'),
     (
         'B002',
         'P002',
-        4000,
-        2000,
-        '2023-05-05',
-        'Pending'
+        10000,
+        5000,
+        '2023-05-11',
+        'Open'
     ),
     (
         'B003',
         'P003',
-        3000,
-        1500,
-        '2023-05-10',
-        'Pending'
+        15000,
+        15000,
+        '2023-05-12',
+        'Closed'
+    );
+
+-- Insert hospital staff data
+INSERT INTO
+    HospitalStaff (
+        staffID,
+        staffName,
+        staffType,
+        department,
+        salary,
+        performance
+    )
+VALUES
+    (
+        'S001',
+        'Jason Lee',
+        'Doctor',
+        'Cardiology',
+        100000,
+        90
+    ),
+    (
+        'S002',
+        'Mary Smith',
+        'Receptionist',
+        'General',
+        40000,
+        85
+    ),
+    (
+        'S003',
+        'David Brown',
+        'Doctor',
+        'Oncology',
+        110000,
+        95
     );

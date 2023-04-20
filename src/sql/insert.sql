@@ -1,33 +1,38 @@
+-- Insert data into the Recptionist table
 INSERT INTO
-    Recptionist (recptionistID, receptionistName, Salary)
+    Recptionist(recptionistID, receptionistName, Salary)
 VALUES
-    (1, 'John Doe', 3000),
-    (2, 'Jane Smith', 3500),
-    (3, 'Bob Johnson', 4000);
+    ('R001', 'John Doe', 40000),
+    ('R002', 'Jane Smith', 45000),
+    ('R003', 'Mike Johnson', 50000);
 
+-- Insert data into the Patient table
 INSERT INTO
-    Patient (patientID, patientName, age, gender)
+    Patient(patientID, patientName, age, gender)
 VALUES
-    (1, 'Alice Brown', '25', 'Female'),
-    (2, 'Bob Green', '32', 'Male'),
-    (3, 'Charlie White', '40', 'Male');
+    ('P001', 'Alice Brown', '30', 'Female'),
+    ('P002', 'Bob Smith', '45', 'Male'),
+    ('P003', 'Charlie Davis', '25', 'Male');
 
+-- Insert data into the Doctor table
 INSERT INTO
-    Doctor (doctorID, doctorName, department)
+    Doctor(doctorID, doctorName, department)
 VALUES
-    (1, 'Dr. Smith', 'Cardiology'),
-    (2, 'Dr. Johnson', 'Oncology'),
-    (3, 'Dr. Lee', 'Pediatrics');
+    ('D001', 'Dr. John Smith', 'Cardiology'),
+    ('D002', 'Dr. Sarah Johnson', 'Oncology'),
+    ('D003', 'Dr. Mark Davis', 'Orthopedics');
 
+-- Insert data into the Appointment table
 INSERT INTO
-    Appointment (appointmentID, Appointmentdate, doctorID)
+    Appointment(appointmentID, Appointmentdate, doctorID)
 VALUES
-    (1, '2023-05-01 10:00:00', 1),
-    (2, '2023-05-05 15:30:00', 2),
-    (3, '2023-05-10 11:15:00', 3);
+    ('A001', '2023-04-22 10:00:00', 'D001'),
+    ('A002', '2023-04-23 11:00:00', 'D002'),
+    ('A003', '2023-04-24 13:00:00', 'D003');
 
+-- Insert data into the ElectronicPrescription table
 INSERT INTO
-    ElectronicPrescription (
+    ElectronicPrescription(
         prescriptionID,
         patientID,
         doctorID,
@@ -36,48 +41,71 @@ INSERT INTO
         frequency
     )
 VALUES
-    (1, 1, 1, 'Lipitor', '20mg', 'Once a day'),
-    (2, 2, 2, 'Tamoxifen', '10mg', 'Twice a day'),
     (
-        3,
-        3,
-        3,
-        'Amoxicillin',
+        'EP001',
+        'P001',
+        'D001',
+        'Aspirin',
+        '100mg',
+        'once daily'
+    ),
+    (
+        'EP002',
+        'P002',
+        'D002',
+        'Ibuprofen',
+        '200mg',
+        'twice daily'
+    ),
+    (
+        'EP003',
+        'P003',
+        'D003',
+        'Acetaminophen',
         '500mg',
-        'Three times a day'
+        'three times daily'
     );
 
+-- Insert data into the HealthRecords table
 INSERT INTO
-    HealthRecords (summary, isCured, currentStatus, ID)
+    HealthRecords(summary, isCured, currentStatus, ID)
 VALUES
     (
-        'Patient has high cholesterol',
+        'Patient has a mild headache',
         'No',
-        'Ongoing treatment',
-        1
+        'In progress',
+        'HR001'
     ),
     (
-        'Patient has breast cancer',
+        'Patient is suffering from fever',
         'No',
-        'Undergoing chemotherapy',
-        2
+        'In progress',
+        'HR002'
     ),
     (
-        'Patient has a bacterial infection',
+        'Patient has a broken arm',
         'Yes',
-        'Recovered',
-        3
+        'Cured',
+        'HR003'
     );
 
+-- Insert data into the HospitalStaff table
 INSERT INTO
-    HospitalStaff (ID, staffName, department, salary, performance)
+    HospitalStaff(ID, staffName, department, salary, performance)
 VALUES
-    (1, 'Sarah Johnson', 'Nursing', 4000, 4),
-    (2, 'Michael Brown', 'IT', 5000, 5),
-    (3, 'Emily Lee', 'Administration', 4500, 3);
+    ('HS001', 'Emily Johnson', 'Nursing', 55000, 4),
+    (
+        'HS002',
+        'David Brown',
+        'Administrative',
+        70000,
+        5
+    ),
+    ('HS003', 'Linda Davis', 'Finance', 60000, 3);
 
+-- Insert data into the Billing table
 INSERT INTO
-    Billing (
+    Billing(
         billID,
         patientID,
         totalAmount,
@@ -86,6 +114,27 @@ INSERT INTO
         currStatus
     )
 VALUES
-    (1, 1, 500, 0, '2023-05-15', 'Unpaid'),
-    (2, 2, 1000, 1000, '2023-06-01', 'Paid'),
-    (3, 3, 750, 0, '2023-05-30', 'Unpaid');
+    (
+        'B001',
+        'P001',
+        2000,
+        1000,
+        '2023-05-01',
+        'Pending'
+    ),
+    (
+        'B002',
+        'P002',
+        4000,
+        2000,
+        '2023-05-05',
+        'Pending'
+    ),
+    (
+        'B003',
+        'P003',
+        3000,
+        1500,
+        '2023-05-10',
+        'Pending'
+    );

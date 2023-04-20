@@ -1,157 +1,169 @@
--- Insert receptionist data
+-- Insert sample data into Receptionist table
 INSERT INTO
-    Receptionist (receptionistID, receptionistName, salary)
+    Receptionist(recptionistID, receptionistName, Salary)
 VALUES
-    ('R001', 'John Doe', 40000),
-    ('R002', 'Jane Smith', 45000),
-    ('R003', 'Mark Johnson', 50000);
+    ('REC001', 'John Doe', 2500),
+    ('REC002', 'Jane Smith', 3000),
+    ('REC003', 'Bob Johnson', 2000);
 
--- Insert patient data
+-- Insert sample data into Patient table
 INSERT INTO
-    Patient (patientID, patientName, age, gender)
+    Patient(patientID, patientName, age, gender)
 VALUES
-    ('P001', 'Alice Green', 25, 'Female'),
-    ('P002', 'Bob Brown', 40, 'Male'),
-    ('P003', 'Charlie Davis', 55, 'Male');
+    ('PAT001', 'Alice Jones', '25', 'F'),
+    ('PAT002', 'Bob Smith', '40', 'M'),
+    ('PAT003', 'Charlie Brown', '35', 'M');
 
--- Insert doctor data
+-- Insert sample data into Doctor table
 INSERT INTO
-    Doctor (doctorID, doctorName, department)
+    Doctor(doctorID, doctorName, department)
 VALUES
-    ('D001', 'Dr. Emily Lee', 'Cardiology'),
-    ('D002', 'Dr. Michael Brown', 'Oncology'),
-    ('D003', 'Dr. Sarah Johnson', 'Neurology');
+    ('DOC001', 'Dr. John Smith', 'Cardiology'),
+    ('DOC002', 'Dr. Sarah Lee', 'Pediatrics'),
+    ('DOC003', 'Dr. Tom Johnson', 'Orthopedics');
 
--- Insert appointment data
+-- Insert sample data into Appointment table
 INSERT INTO
-    Appointment (
+    Appointment(
         appointmentID,
-        appointmentDate,
+        Appointmentdate,
         doctorID,
         patientID
     )
 VALUES
-    ('A001', '2023-05-01 10:00:00', 'D001', 'P001'),
-    ('A002', '2023-05-02 11:00:00', 'D002', 'P002'),
-    ('A003', '2023-05-03 12:00:00', 'D003', 'P003');
+    (
+        'APPT001',
+        '2023-05-01 10:00:00',
+        'DOC001',
+        'PAT001'
+    ),
+    (
+        'APPT002',
+        '2023-05-03 14:30:00',
+        'DOC002',
+        'PAT002'
+    ),
+    (
+        'APPT003',
+        '2023-05-05 11:15:00',
+        'DOC003',
+        'PAT003'
+    );
 
--- Insert electronic prescription data
+-- Insert sample data into ElectronicPrescription table
 INSERT INTO
-    ElectronicPrescription (
+    ElectronicPrescription(
         prescriptionID,
-        doctorID,
         patientID,
+        doctorID,
         medicationName,
         dosage,
         frequency
     )
 VALUES
     (
-        'EP001',
-        'D001',
-        'P001',
+        'RX001',
+        'PAT001',
+        'DOC001',
         'Lisinopril',
-        '10 mg',
+        '10mg',
         'Once a day'
     ),
     (
-        'EP002',
-        'D002',
-        'P002',
-        'Chemotherapy',
-        '100 mg',
-        'Once a week'
+        'RX002',
+        'PAT002',
+        'DOC002',
+        'Amoxicillin',
+        '500mg',
+        'Twice a day'
     ),
     (
-        'EP003',
-        'D003',
-        'P003',
-        'Zoloft',
-        '50 mg',
-        'Twice a day'
+        'RX003',
+        'PAT003',
+        'DOC003',
+        'Ibuprofen',
+        '200mg',
+        'As needed'
     );
 
--- Insert health record data
+-- Insert sample data into HealthRecords table
 INSERT INTO
-    HealthRecord (
-        recordID,
-        prescriptionID,
-        summary,
-        isCured,
-        currentStatus
-    )
+    HealthRecords(summary, isCured, currentStatus, ID)
 VALUES
     (
-        'H001',
-        'EP001',
-        'High blood pressure',
-        1,
-        'Closed'
+        'Patient had blood pressure.',
+        'No',
+        'Ongoing',
+        'PAT001'
     ),
-    ('H002', 'EP002', 'Lung cancer', 0, 'In progress'),
-    ('H003', 'EP003', 'Depression', 1, 'Closed');
+    (
+        'Patient had a mild infection.',
+        'Yes',
+        'Cured',
+        'PAT002'
+    ),
+    (
+        'Patient had joint pain.',
+        'No',
+        'Ongoing',
+        'PAT003'
+    );
 
--- Insert billing data
+-- Insert sample data into HospitalStaff table
 INSERT INTO
-    Billing (
+    HospitalStaff(ID, staffName, department, salary, performance)
+VALUES
+    (
+        'DOC001',
+        'Dr. John Smith',
+        'Cardiology',
+        8000,
+        9
+    ),
+    ('DOC002', 'Dr. Sarah Lee', 'Pediatrics', 7000, 8),
+    (
+        'DOC003',
+        'Dr. Tom Johnson',
+        'Orthopedics',
+        8000,
+        5
+    ),
+    ('REC001', 'John Doe', 'Reception', 2500, 7),
+    ('REC002', 'Jane Smith', 'Reception', 3000, 5),
+    ('REC003', 'Bob Johnson', 'Reception', 2000, 9);
+
+-- Insert sample data into Billing table
+INSERT INTO
+    Billing(
         billID,
         patientID,
         totalAmount,
         amountPaid,
         dueDate,
-        currentStatus
-    )
-VALUES
-    ('B001', 'P001', 5000, 2500, '2023-05-10', 'Open'),
-    (
-        'B002',
-        'P002',
-        10000,
-        5000,
-        '2023-05-11',
-        'Open'
-    ),
-    (
-        'B003',
-        'P003',
-        15000,
-        15000,
-        '2023-05-12',
-        'Closed'
-    );
-
--- Insert hospital staff data
-INSERT INTO
-    HospitalStaff (
-        staffID,
-        staffName,
-        staffType,
-        department,
-        salary,
-        performance
+        currStatus
     )
 VALUES
     (
-        'S001',
-        'Jason Lee',
-        'Doctor',
-        'Cardiology',
-        100000,
-        90
+        'BILL001',
+        'PAT001',
+        500,
+        0,
+        '2023-06-01',
+        'Unpaid'
     ),
     (
-        'S002',
-        'Mary Smith',
-        'Receptionist',
-        'General',
-        40000,
-        85
+        'BILL002',
+        'PAT002',
+        750,
+        750,
+        '2023-06-05',
+        'Paid'
     ),
     (
-        'S003',
-        'David Brown',
-        'Doctor',
-        'Oncology',
-        110000,
-        95
+        'BILL003',
+        'PAT003',
+        1000,
+        500,
+        '2023-06-10',
+        'Partially Paid'
     );

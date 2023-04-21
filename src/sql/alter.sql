@@ -10,6 +10,31 @@ ALTER TABLE
 ADD
     CONSTRAINT fk_patient_appointment FOREIGN KEY (patientID) REFERENCES Patient(patientID);
 
+ALTER TABLE
+    Patient
+ADD
+    username VARCHAR(30),
+ADD
+    password VARCHAR(30);
+
+ALTER TABLE
+    Patient
+ADD
+    CONSTRAINT unique_username_patient UNIQUE (username);
+
+-- Add username and password columns to Doctor table
+ALTER TABLE
+    Doctor
+ADD
+    username VARCHAR(30),
+ADD
+    password VARCHAR(30);
+
+ALTER TABLE
+    Doctor
+ADD
+    CONSTRAINT unique_username UNIQUE (username);
+
 -- Add foreign key constraint to ElectronicPrescription table
 ALTER TABLE
     ElectronicPrescription

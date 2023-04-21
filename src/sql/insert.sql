@@ -8,11 +8,42 @@ VALUES
 
 -- Insert sample data into Patient table
 INSERT INTO
-    Patient(patientID, patientName, age, gender)
+    Patient(
+        patientID,
+        patientName,
+        age,
+        gender,
+        username,
+        password
+    )
 VALUES
     ('PAT001', 'Alice Jones', '25', 'F'),
     ('PAT002', 'Bob Smith', '40', 'M'),
     ('PAT003', 'Charlie Brown', '35', 'M');
+
+UPDATE
+    Patient
+SET
+    username = 'alicejones',
+    password = 'mypassword'
+WHERE
+    patientID = 'PAT001';
+
+UPDATE
+    Patient
+SET
+    username = 'bobsmith',
+    password = 'mypassword'
+WHERE
+    patientID = 'PAT002';
+
+UPDATE
+    Patient
+SET
+    username = 'charliebrown',
+    password = 'mypassword'
+WHERE
+    patientID = 'PAT003';
 
 -- Insert sample data into Doctor table
 INSERT INTO
@@ -49,6 +80,33 @@ VALUES
         'DOC003',
         'PAT003'
     );
+
+-- Update username and password for Dr. John Smith
+UPDATE
+    Doctor
+SET
+    username = 'johnsmith',
+    password = 'password123'
+WHERE
+    doctorID = 'DOC001';
+
+-- Update username and password for Dr. Sarah Lee
+UPDATE
+    Doctor
+SET
+    username = 'sarahlee',
+    password = 'password456'
+WHERE
+    doctorID = 'DOC002';
+
+-- Update username and password for Dr. Tom Johnson
+UPDATE
+    Doctor
+SET
+    username = 'tomjohnson',
+    password = 'password789'
+WHERE
+    doctorID = 'DOC003';
 
 -- Insert sample data into ElectronicPrescription table
 INSERT INTO

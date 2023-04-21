@@ -1,6 +1,5 @@
--- Create a table to store registration information
-create table Recptionist(
-    recptionistID int,
+create table Receptionist(
+    recptionistID varchar(30),
     receptionistName varchar(30),
     -- Date of registration
     Salary int,
@@ -10,7 +9,7 @@ create table Recptionist(
 
 -- Create a table to store patient information
 create table Patient(
-    patientID int,
+    patientID varchar(30),
     -- Unique ID for each patient
     patientName varchar(30),
     -- Patient name
@@ -22,7 +21,7 @@ create table Patient(
 
 -- Create a table to store doctor information
 create table Doctor(
-    doctorID int,
+    doctorID varchar(30),
     -- Unique ID for each doctor
     doctorName varchar(30),
     -- Name of the doctor
@@ -33,20 +32,21 @@ create table Doctor(
 
 -- Create a table to store appointment information
 create table Appointment(
-    appointmentID int,
+    appointmentID varchar(30),
     -- Unique ID for each appointment
     Appointmentdate Datetime,
     -- Date and time of appointment
-    doctorID int,
+    doctorID varchar(30),
+    patientID varchar(30),
     -- ID of the consultation associated with this appointment
     constraint pk_appointment PRIMARY KEY (appointmentID) -- Set appointmentID as the primary key
 );
 
 -- Create a table to store prescription information
 create table ElectronicPrescription(
-    prescriptionID int,
-    patientID int,
-    doctorID int,
+    prescriptionID varchar(30),
+    patientID varchar(30),
+    doctorID varchar(30),
     medicationName varchar(30),
     dosage varchar(30),
     frequency varchar(30),
@@ -62,13 +62,13 @@ create table HealthRecords(
     -- Name of the medication
     currentStatus varchar(30),
     -- Dosage of the medication
-    ID int,
+    ID varchar(30),
     -- ID of the prescription associated with this medication
     constraint pk_healthrecords PRIMARY KEY (ID) -- Set medicationID
 );
 
 create table HospitalStaff(
-    ID int,
+    ID varchar(30),
     staffName varchar(30),
     department varchar(30),
     salary int,
@@ -77,8 +77,8 @@ create table HospitalStaff(
 );
 
 create table Billing(
-    billID int,
-    patientID int,
+    billID varchar(30),
+    patientID varchar(30),
     totalAmount int,
     amountPaid int,
     dueDate Date,

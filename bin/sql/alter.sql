@@ -1,30 +1,61 @@
--- Add foreign key constraint to link Recptionist table to Appointment table
--- Add foreign key constraint to link Patient table to ElectronicPrescription table
-ALTER TABLE
-    ElectronicPrescription
-ADD
-    CONSTRAINT fk_prescription_patient FOREIGN KEY (patientID) REFERENCES Patient(patientID);
-
--- Add foreign key constraint to link Doctor table to Appointment table
+-- Add foreign key constraint to Appointment table
 ALTER TABLE
     Appointment
 ADD
-    CONSTRAINT fk_appointment_doctor FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID);
+    CONSTRAINT fk_doctor_appointment FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID);
 
--- Add foreign key constraint to link Doctor table to ElectronicPrescription table
+-- Add foreign key constraint to Appointment table
+ALTER TABLE
+    Appointment
+ADD
+    CONSTRAINT fk_patient_appointment FOREIGN KEY (patientID) REFERENCES Patient(patientID);
+
+ALTER TABLE
+    Patient
+ADD
+    username VARCHAR(30),
+ADD
+    password VARCHAR(30);
+
+ALTER TABLE
+    Patient
+ADD
+    CONSTRAINT unique_username_patient UNIQUE (username);
+
+-- Add username and password columns to Doctor table
+ALTER TABLE
+    Doctor
+ADD
+    username VARCHAR(30),
+ADD
+    password VARCHAR(30);
+
+ALTER TABLE
+    Doctor
+ADD
+    CONSTRAINT unique_username UNIQUE (username);
+
+-- Add foreign key constraint to ElectronicPrescription table
 ALTER TABLE
     ElectronicPrescription
 ADD
-    CONSTRAINT fk_prescription_doctor FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID);
+    CONSTRAINT fk_patient_prescription FOREIGN KEY (patientID) REFERENCES Patient(patientID);
 
--- Add foreign key constraint to link ElectronicPrescription table to HealthRecords table
+-- Add foreign key constraint to ElectronicPrescription table
+ALTER TABLE
+    ElectronicPrescription
+ADD
+    CONSTRAINT fk_doctor_prescription FOREIGN KEY (doctorID) REFERENCES Doctor(doctorID);
+
+-- Add foreign key constraint to HealthRecords table
+-- Add foreign key constraint to HealthRecords table
 ALTER TABLE
     HealthRecords
 ADD
-    CONSTRAINT fk_healthrecords_patient FOREIGN KEY (ID) REFERENCES Patient(patientID);
+    CONSTRAINT fk_patient_healthrecords FOREIGN KEY (ID) REFERENCES Patient(patientID);
 
--- Add foreign key constraint to link Patient table to Billing table
+-- Add foreign key constraint to Billing table
 ALTER TABLE
     Billing
 ADD
-    CONSTRAINT fk_billing_patient FOREIGN KEY (patientID) REFERENCES Patient(patientID);
+    CONSTRAINT fk_patient_billing FOREIGN KEY (patientID) REFERENCES Patient(patientID);

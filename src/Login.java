@@ -29,7 +29,7 @@ public class Login {
         login_id = sc.nextInt();
         //if login_id is invalid we till him to try again/register
         //and if the login_id is valid we proceed to ask the name 
-        String sql = "SELECT COUNT(*) FROM Patient WHERE login_id = " + login_id;
+        String sql = "SELECT COUNT(*) FROM " + table + " WHERE login_id = " + login_id;
         
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
@@ -45,7 +45,7 @@ public class Login {
         }
         System.out.println("Please enter your name");
         name = sc.nextLine();
-        String sql = "SELECT * FROM Patient WHERE login_id = " + login_id;
+        String sql = "SELECT * FROM " + table + " WHERE login_id = " + login_id;
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
          if(name == rs.getString(2)){///column index should come inside the brackets

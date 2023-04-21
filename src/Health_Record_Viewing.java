@@ -2,7 +2,7 @@
 import java.sql.*;
 import java.util.Scanner;
 public class Health_Record_Viewing {
-    public static String getHealthRecord(String username, String password) {
+    public static String Patient_getHealthRecord(String username, String password) {
         String healthRecord = null;
 
         // Step 1: Establish a connection to the database
@@ -40,6 +40,40 @@ public class Health_Record_Viewing {
         }
 
         return healthRecord;
+    }
+    public static String Doctor_getHealthRecord(String patientId){
+        try {
+            Connection conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/patient_records",
+                "username",
+                "password"
+            );
+
+            // Step 2: Retrieve the health records
+            String sql = "SELECT * FROM health_records";
+            if (patientId != "") {
+                sql += " WHERE patient_id=?";
+            }
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            if (patientId != "") {
+                stmt.setString(1, patientId);
+            }
+            ResultSet rs = stmt.executeQuery();
+
+            // Step 3: Display the health records
+            while (rs.next()) {
+                int id = rs.getString("id");
+                int patient_id = rs.getInt("patient_id");
+                String health_record = rs.getString("health_record");
+                System.out.println("ID: " + id + ", Patient ID: " + patient_id + ", Health Record: " + health_record);
+            }
+
+            // Step 4: Close the database connection
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     }
    
 }

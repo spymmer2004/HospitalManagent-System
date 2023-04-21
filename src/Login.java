@@ -48,7 +48,7 @@ public class Login {
         String sql = "SELECT * FROM Patient WHERE login_id = " + login_id;
         Statement stmt = conn.createStatement();
         ResultSet rs = stmt.executeQuery(sql);
-         if(name == rs.getString()){///column index should come inside the brackets
+         if(name == rs.getString(2)){///column index should come inside the brackets
             System.out.println("You have successfully logged into your account");
          }
          else{
